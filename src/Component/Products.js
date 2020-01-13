@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ProductItem from './ProductItem';
-import {connect} from 'react-redux';
 class Products extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +19,7 @@ class Products extends Component {
 
   // ----------------------------END FUNCTION----------------------------
   render() {
+    //Props này nhận từ ProductsContainer
     var {products} = this.props;
     return (
       <section className="section">
@@ -33,12 +33,5 @@ class Products extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {products: state.products}
-}
 
-const mapDispatchToProps = (dispatch, props) => {
-  return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default Products;
