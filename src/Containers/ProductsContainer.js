@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Products from '../Component/Products';
 import ProductItem from '../Component/ProductItem';
+import PropTypes from 'prop-types';
 
 class ProductsContainer extends Component {
   constructor(props) {
@@ -31,6 +32,21 @@ class ProductsContainer extends Component {
     );
   }
 }
+
+ProductsContainer.propTypes = {
+    products: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+            image: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired,
+            inventory: PropTypes.number.isRequired,
+            rating: PropTypes.number.isRequired
+        })
+    ).isRequired
+}
+
 const mapStateToProps = state => {
   return {products: state.products}
 }
