@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Products from '../Component/Products';
 import ProductItem from '../Component/ProductItem';
 import PropTypes from 'prop-types';
+import * as actions from '../Actions/index';
 
 class ProductsContainer extends Component {
   constructor(props) {
@@ -13,9 +14,10 @@ class ProductsContainer extends Component {
   // ----------------------------FUNCTION----------------------------
   showProducts = products => {
     var result = null;
+    var {onAddToCart} = this.props;
     if (products.length > 0) {
       result = products.map((product, index) => {
-        return <ProductItem key={index} product={product}/>
+        return <ProductItem key={index} product={product} onAddToCart={onAddToCart}/>
       })
     }
     return result;
@@ -23,7 +25,7 @@ class ProductsContainer extends Component {
 
   // ----------------------------END FUNCTION----------------------------
   render() {
-    var {products} = this.props;
+    var {products} = this.props;    
     return (
         //Truyền props dạng children
       <Products>
@@ -51,4 +53,12 @@ const mapStateToProps = state => {
   return {products: state.products}
 }
 
-export default connect(mapStateToProps, null)(ProductsContainer);
+const mapDispatchToProps = (dispatch, props) =>{
+  return {
+    onAddToCart: product =>{
+      dispatch(actions.actAddToCart(product, 1));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);

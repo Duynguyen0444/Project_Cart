@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 
-class ProductItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
+class ProductItem extends Component { 
   // ----------------------------FUNCTION----------------------------
   showRating = rating => {
     var result = [];
@@ -15,6 +11,9 @@ class ProductItem extends Component {
       result.push(<i key={i + j} className="fa fa-star-o"/>)
     }
     return result;
+  }
+  onAddToCart = product =>{
+    this.props.onAddToCart(product);
   }
   // ----------------------------END FUNCTION----------------------------
   render() {
@@ -46,6 +45,7 @@ class ProductItem extends Component {
               <span className="left">{product.price}$</span>
               <span className="right">
                 <a
+                  onClick={() => this.onAddToCart(product)}
                   className="btn-floating blue-gradient"
                   data-toggle="tooltip"
                   data-placement="top"
