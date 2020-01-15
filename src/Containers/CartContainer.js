@@ -10,7 +10,9 @@ class CartContainer extends Component {
   // ----------------------------FUNCTION---------------------------- Show các sản
   // phẩm trong giỏ
   showCartItem = cart => {
-    var result = Message.MSG_EMPTY_CART;
+    var result = <tr>
+      <td>{Message.MSG_EMPTY_CART}</td>
+    </tr>
     if (cart.length > 0) {
       result = cart.map((item, index) => {
         return <CartItem key={index} item={item}/>
@@ -20,7 +22,7 @@ class CartContainer extends Component {
   }
 
   //Tính tổng tiền các sản phẩm trong giỏ hàng
-  showTotalAmount = cart => {    
+  showTotalAmount = cart => {
     var result = null;
     if (cart.length > 0) {
       result = <CartResult cart={cart}/>

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import CartResult from '../Component/CartResult';
 class Cart extends Component {
   constructor(props) {
     super(props);

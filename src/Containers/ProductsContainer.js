@@ -14,10 +14,10 @@ class ProductsContainer extends Component {
   // ----------------------------FUNCTION----------------------------
   showProducts = products => {
     var result = null;
-    var {onAddToCart} = this.props;
+    var {onAddToCart, onChangeMessage} = this.props;
     if (products.length > 0) {
       result = products.map((product, index) => {
-        return <ProductItem key={index} product={product} onAddToCart={onAddToCart}/>
+        return <ProductItem key={index} product={product} onAddToCart={onAddToCart} onChangeMessage={onChangeMessage}/>
       })
     }
     return result;
@@ -46,7 +46,8 @@ ProductsContainer.propTypes = {
             inventory: PropTypes.number.isRequired,
             rating: PropTypes.number.isRequired
         })
-    ).isRequired
+    ).isRequired,
+    onChangeMessage: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {
@@ -57,7 +58,10 @@ const mapDispatchToProps = (dispatch, props) =>{
   return {
     onAddToCart: product =>{
       dispatch(actions.actAddToCart(product, 1));
-    }
+    },  
+    onChangeMessage: message => {
+      dispatch(actions.actChangeMessage(message));
+    }  
   }
 }
 
