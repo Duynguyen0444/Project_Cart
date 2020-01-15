@@ -1,0 +1,108 @@
+warning: LF will be replaced by CRLF in src/App.js.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/index.js.
+The file will have its original line endings in your working directory
+[1mdiff --git a/src/Actions/index.js b/src/Actions/index.js[m
+[1mindex e69de29..c0b03b3 100644[m
+[1m--- a/src/Actions/index.js[m
+[1m+++ b/src/Actions/index.js[m
+[36m@@ -0,0 +1,5 @@[m
+[32m+[m[32mimport * as types from '../Constants/ActionType';[m
+[32m+[m
+[32m+[m[32mexport const actAddToCart = (product, quantity) => {[m
+[32m+[m[32m  return {type: types.ADD_TO_CART, product, quantity}[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/App.js b/src/App.js[m
+[1mindex dd79310..ac99507 100644[m
+[1m--- a/src/App.js[m
+[1m+++ b/src/App.js[m
+[36m@@ -2,7 +2,7 @@[m [mimport React, {Component} from 'react';[m
+ import Header from './Component/Header';[m
+ import ProductsContainer from './Containers/ProductsContainer';[m
+ import Message from './Component/Message';[m
+[31m-import Cart from './Component/Cart';[m
+[32m+[m[32mimport CartContainer from './Containers/CartContainer';[m
+ import Footer from './Component/Footer';[m
+ class App extends Component {[m
+   constructor(props) {[m
+[36m@@ -21,7 +21,7 @@[m [mclass App extends Component {[m
+           {/* Message */}[m
+           <Message />[m
+           {/* Cart */}[m
+[31m-          <Cart />[m
+[32m+[m[32m          <CartContainer />[m
+         </div>[m
+       </main>[m
+       {/* Footer */}[m
+[1mdiff --git a/src/Component/Cart.js b/src/Component/Cart.js[m
+[1mindex 29f1d68..5bff4f5 100644[m
+[1m--- a/src/Component/Cart.js[m
+[1m+++ b/src/Component/Cart.js[m
+[36m@@ -1,13 +1,12 @@[m
+ import React, {Component} from 'react';[m
+[31m-import CartItem from './CartItem';[m
+[31m-import CartResult from './CartResult';[m
+[31m-[m
+[32m+[m[32mimport CartResult from '../Component/CartResult';[m
+ class Cart extends Component {[m
+   constructor(props) {[m
+     super(props);[m
+     this.state = {}[m
+   }[m
+   render() {[m
+[32m+[m[32m    var {children} = this.props;[m
+     return ([m
+       <section className="section">[m
+         <div className="table-responsive">[m
+[36m@@ -23,12 +22,8 @@[m [mclass Cart extends Component {[m
+               </tr>[m
+             </thead>[m
+             <tbody>[m
+[31m-              {/* CartItem */}[m
+[31m-              <CartItem/>[m
+[31m-              <CartItem/>[m
+[31m-              <CartItem/>[m
+[31m-              {/* CartResult */}[m
+[31m-              <CartResult />[m
+[32m+[m[32m              {/* CartItem + CartResult*/}[m
+[32m+[m[32m              {children}[m
+             </tbody>[m
+           </table>[m
+         </div>[m
+[1mdiff --git a/src/Component/CartItem.js b/src/Component/CartItem.js[m
+[1mindex 261f3fc..9219f19 100644[m
+[1m--- a/src/Component/CartItem.js[m
+[1m+++ b/src/Component/CartItem.js[m
+[36m@@ -1,27 +1,30 @@[m
+ import React, {Component} from 'react';[m
+ [m
+ class CartItem extends Component {[m
+[31m-  constructor(props) {[m
+[31m-    super(props);[m
+[31m-    this.state = {}[m
+[32m+[m[32m  // ----------------------------FUNCTION----------------------------[m
+[32m+[m[32m  subTotal = (price, quantity) => {[m
+[32m+[m[32m    return price * quantity;[m
+   }[m
+[32m+[m[32m  // ----------------------------END FUNCTION----------------------------[m
+   render() {[m
+[32m+[m[32m    //Nhận props item từ Cart[m
+[32m+[m[32m    var {item} = this.props;[m
+     return ([m
+       <tr>[m
+         <th scope="row">[m
+           <img[m
+[31m-            src="https://store.storeimages.cdn-apple.com/4974/as-images.apple.com/is/image/AppleInc/aos/published/images/H/H0/HH0H2/HH0H2?wid=445&hei=445&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=K7ik72"[m
+[31m-            alt=""[m
+[32m+[m[32m            src={item.product.image}[m
+[32m+[m[32m            alt={item.product.name}[m
+             className="img-fluid z-depth-0"/>[m
+         </th>[m
+         <td>[m
+           <h5>[m
+[31m-            <strong>Iphone 6 Plus</strong>[m
+[32m+[m[32m            <strong>{item.product.name}</strong>[m
+           </h5>[m
+         </td>[m
+[31m-        <td>

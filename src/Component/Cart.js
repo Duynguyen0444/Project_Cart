@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
-import CartItem from './CartItem';
-import CartResult from './CartResult';
-
+import CartResult from '../Component/CartResult';
 class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {}
   }
   render() {
+    var {children} = this.props;
     return (
       <section className="section">
         <div className="table-responsive">
@@ -23,12 +22,8 @@ class Cart extends Component {
               </tr>
             </thead>
             <tbody>
-              {/* CartItem */}
-              <CartItem/>
-              <CartItem/>
-              <CartItem/>
-              {/* CartResult */}
-              <CartResult />
+              {/* CartItem + CartResult*/}
+              {children}
             </tbody>
           </table>
         </div>
