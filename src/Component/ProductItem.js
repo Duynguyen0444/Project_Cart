@@ -15,7 +15,7 @@ class ProductItem extends Component {
   }
   onAddToCart = product =>{
     this.props.onAddToCart(product);
-    this.props.onChangeMessage(messages.MSG_ADD_TO_CART);
+    this.props.onChangeMessage(messages.MSG_ADD_TO_CART);    
   }
   // ----------------------------END FUNCTION----------------------------
   render() {

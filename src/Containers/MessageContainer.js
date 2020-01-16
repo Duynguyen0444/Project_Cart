@@ -3,9 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Message from '../Component/Message';
 
-class MessageContainer extends Component {
-  // ----------------------------FUNCTION----------------------------
-  // ----------------------------END FUNCTION----------------------------
+class MessageContainer extends Component {  
   render() {
     var {message} = this.props;
     return (<Message message={message} />);

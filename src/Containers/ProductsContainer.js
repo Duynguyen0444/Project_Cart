@@ -18,7 +18,7 @@ class ProductsContainer extends Component {
     if (products.length > 0) {
       result = products.map((product, index) => {
         return <ProductItem key={index} product={product} onAddToCart={onAddToCart} onChangeMessage={onChangeMessage}/>
-      })
+      }); 
     }
     return result;
   }
