@@ -14,14 +14,15 @@ class CartContainer extends Component {
     var result = <tr>
       <td>{Message.MSG_EMPTY_CART}</td>
     </tr>
-    var {onDeleteProduct, onChangeMessage} = this.props;
+    var {onDeleteProduct, onChangeMessage, onUpdateProductInCart} = this.props;
     if (cart.length > 0) {
       result = cart.map((item, index) => {
         return <CartItem
           key={index}
           item={item}
           onDeleteProduct={onDeleteProduct}
-          onChangeMessage={onChangeMessage}/>
+          onChangeMessage={onChangeMessage}
+          onUpdateProductInCart={onUpdateProductInCart}/>
       })
     }
     return result;
@@ -60,7 +61,10 @@ CartContainer.propTypes = {
       rating: PropTypes.number.isRequired
     }),
     quantity: PropTypes.number.isRequired
-  })).isRequired
+  })).isRequired,
+  onDeleteProduct: PropTypes.func.isRequired,
+  onChangeMessage: PropTypes.func.isRequired,
+  onUpdateProductInCart: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
@@ -74,6 +78,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     onChangeMessage: message => {
       dispatch(actions.actChangeMessage(message));
+    },
+    onUpdateProductInCart: (product, quantity) => {
+      dispatch(actions.actUpdateProductInCart(product, quantity));
     }
   }
 }

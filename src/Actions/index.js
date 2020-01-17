@@ -9,3 +9,7 @@ export const actChangeMessage = message => {
 export const actRemoveProductCart = product => {
   return {type: types.DELETE_PRODUCT_CART, product}
 }
+
+export const actUpdateProductInCart = (quantity, product) => {
+  return {type: types.UPDATE_PRODUCT_IN_CART, quantity, product}
+}
